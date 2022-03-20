@@ -322,7 +322,7 @@ def import_groups(orig_client, dest_client):
             )
 
             # Post to GroupDataSourceResource
-            view_only = d.get("view_only", False)
+            view_only = False
             resp = dest_client._post(
                 f"api/groups/{dest_id}/data_sources/{dest_ds_id}",
                 json={"view_only": view_only},
