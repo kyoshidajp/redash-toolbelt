@@ -351,7 +351,9 @@ def import_users(orig_client, dest_client):
         active_users = client.paginate(client.users, only_disabled=False)
         disabled_users = client.paginate(client.users, only_disabled=True)
 
-        return [*active_users, *disabled_users]
+        users = [*active_users, *disabled_users]
+        sorted_users = sorted(users, key=lambda u: u['id'])
+        return sorted_users
 
     orig_users = get_all_users(orig_client)
     dest_users = dest_client.paginate(dest_client.users)
@@ -518,7 +520,7 @@ def import_queries(orig_client, dest_client):
     print("Import queries...")
 
     queries = orig_client.paginate(orig_client.queries)
-    queries = sorted(queries, key=lambda x: x.get("created_at", 0))
+    queries = sorted(queries, key=lambda x: x.get("id", 0))
 
     for query in queries:
 

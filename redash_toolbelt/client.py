@@ -64,9 +64,10 @@ class Redash(object):
 
     def get_data_sources(self):
         """GET api/data_sources"""
-        return self._get(
+        response = self._get(
             "api/data_sources",
         ).json()
+        return sorted(response, key=lambda d: d['id'])
 
     def get_data_source(self, id):
         """GET api/data_sources/<id>"""
