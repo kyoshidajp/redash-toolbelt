@@ -356,11 +356,6 @@ def import_users(orig_client, dest_client):
     orig_users = get_all_users(orig_client)
     dest_users = dest_client.paginate(dest_client.users)
 
-    # Check if the user list has already been synced between orig, dest, and meta
-    if not valid_user_meta(dest_users):
-        print("ERROR: not all users in meta are present in destination instance.")
-        return
-
     # Check if the user list has been synced between orig and dest
     # In this case, meta.json should be updated
     if user_lists_are_equal(orig_users, dest_users):
