@@ -189,6 +189,12 @@ class Redash(object):
         """
 
         response = resource(page=page, page_size=page_size, **kwargs)
+
+        # For 2.0.1
+        #   always returns list
+        if isinstance(response, list):
+            return response
+
         items = response["results"]
 
         if response["page"] * response["page_size"] >= response["count"]:
