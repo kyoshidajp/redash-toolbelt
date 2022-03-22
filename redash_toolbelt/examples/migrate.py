@@ -561,7 +561,7 @@ def import_queries(orig_client, dest_client):
                 "description": query["description"],
                 "name": query["name"],
                 "options": query["options"],
-                "tags": query["tags"],
+                "tags": [],
             }
 
             try:
