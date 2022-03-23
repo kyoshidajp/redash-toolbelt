@@ -584,6 +584,9 @@ def import_queries(orig_client, dest_client):
                         origin_id, e
                     )
                 )
+
+                # exit explicitly
+                sys.exit()
                 return
 
             destination_id = response.json()["id"]
